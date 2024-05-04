@@ -43,3 +43,9 @@ En su terminal ejecute el siguiente comando.
 ```
 ionic serve
 ```
+
+## Generar documentacion
+
+```
+npm run compodoc:build-and-serve
+```
