@@ -21,3 +21,9 @@ export function createRound(method: string): Function {
     return func(value);
   };
 }
+
+export function toDecimal(value: number, decimal: number): number {
+  return Math.round(value * Math.pow(10, decimal)) / Math.pow(10, decimal);
+}
+
+

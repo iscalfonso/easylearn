@@ -1,0 +1,54 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <img src="assets/easylearn-icon.png" alt="Logo de easylearn">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p-panel class="card flex justify-content-center" header="Reportes" [toggleable]="true">
+    <p-floatLabel>
+      <p-dropdown
+          [options]="groups"
+          [(ngModel)]="selectedGroup"
+          placeholder=" Selecciona un grupo"
+          optionLabel="name"
+          [showClear]="true"
+          [checkmark]="true"
+          inputId="float-label" />
+      <label for="float-label"> Selecciona un grupo</label>
+    </p-floatLabel>
+    <p-divider />
+    <p-floatLabel>
+      <p-dropdown
+          [options]="subjects"
+          [(ngModel)]="selectedSubject"
+          placeholder=" Selecciona una materia"
+          optionLabel="name"
+          [showClear]="true"
+          [checkmark]="true"
+          inputId="float-label" />
+      <label for="float-label"> Selecciona una materia</label>
+    </p-floatLabel>
+    <p-tabView>
+      <p-tabPanel header="Evaluaci&oacute;n">
+        <div *ngIf="selectedGroup">
+          <p-card [header]="'Grupo ' + selectedGroup.name" subheader="" [style]="{ width: 'auto' }">
+            <ng-template pTemplate="footer">
+              <div class="flex gap-3 mt-1">
+                <p-button label="Exportar" class="w-full" styleClass="w-full" />
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+        <div class="card">
+          <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+        </div>
+        <div class="card flex justify-content-center">
+          <p>Promedios generales</p>
+          <p-chart type="pie" [data]="data" [options]="options" />
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </p-panel>
+
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <img src="assets/easylearn-icon.png" alt="Logo de easylearn">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <p-card header="Registro" subheader="Llene los siguientes campos a continuación" [style]="{ width: 'auto' }">
+    <ng-template pTemplate="header">
+      <img alt="Card" src="assets/register.jpeg" />
+    </ng-template>
+    <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
+      <div class="p-fluid p-grid">
+        <div class="p-field p-col-12">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" type="text" pInputText [(ngModel)]="nombre" name="nombre" required />
+        </div>
+
+        <div class="p-field p-col-12">
+          <label for="apellidos">Apellidos</label>
+          <input id="apellidos" type="text" pInputText [(ngModel)]="apellidos" name="apellidos" required />
+        </div>
+
+        <div class="p-field p-col-12">
+          <label for="tipoUsuario">Tipo de Usuario</label>
+          <p-dropdown [options]="tiposUsuario" [(ngModel)]="tipoUsuario" name="tipoUsuario" placeholder="Seleccione un tipo" (onChange)="onTipoUsuarioChange($event)" required></p-dropdown>
+        </div>
+
+        <div class="p-field p-col-12" *ngIf="tipoUsuario === 'Alumno' || tipoUsuario === 'Padre de Familia'">
+          <label for="grupo">Grupo</label>
+          <input id="grupo" type="text" pInputText [(ngModel)]="grupo" name="grupo" />
+        </div>
+
+        <div class="p-field p-col-12" *ngIf="tipoUsuario === 'Alumno' || tipoUsuario === 'Padre de Familia'">
+          <label for="grado">Grado Escolar</label>
+          <input id="grado" type="text" pInputText [(ngModel)]="grado" name="grado" />
+        </div>
+
+        <div class="p-col-12">
+          <button pButton type="submit" label="Registrar" [disabled]="!registrationForm.form.valid"></button>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</ion-content>

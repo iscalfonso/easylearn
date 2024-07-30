@@ -1,0 +1,73 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="assets/easylearn-icon.png" alt="Logo de easylearn">
+      <span> Tareas </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p-panel class="card flex justify-content-center" header="Tareas" [toggleable]="true">
+    <h2>Bienvenido Alisander Lockhead</h2>
+    <p>En las siguientes tabs puede ver las tareas, enviar su trabajo al profesor y ver las calificaciones.</p>
+    <p-floatLabel>
+      <p-dropdown
+          [options]="subjects"
+          [(ngModel)]="selectedSubject"
+          placeholder=" Selecciona una materia"
+          optionLabel="name"
+          [showClear]="true"
+          [checkmark]="true"
+          inputId="float-label" />
+      <label for="float-label"> Selecciona una materia</label>
+    </p-floatLabel>
+    <p-tabView>
+      <p-tabPanel header="Listado de tareas">
+        <div *ngIf="selectedSubject">
+          <p-card [header]="selectedSubject.name" subheader="Confirme la asistencia por alumno" [style]="{ width: 'auto' }">
+            <ng-template pTemplate="header">
+                <img *ngIf="!selectedDate" alt="Card" src="assets/card3.jpeg" />
+                <img *ngIf="selectedDate" alt="Card" src="assets/card4.jpeg" />
+            </ng-template>
+              <div *ngFor="let homework of homeworks; let i = index">
+                <p-panel [header]="homework.homeworkName" [toggleable]="true" [collapsed]="true">
+                  <p>
+                      Tarea {{ i + 1 }} - {{ homework.homeworkName }}
+                  </p>
+                  <p-divider></p-divider>
+                  <div class="flex gap-3 mt-1">
+                    <p-button label="Descargar documento" class="w-full" styleClass="w-full" />
+                  </div>
+                  <p-divider></p-divider>
+                  <p-fileUpload
+                    mode="basic"
+                    chooseLabel="Subir tarea"
+                    chooseIcon="pi pi-upload"
+                    name="demo[]"
+                    url="https://www.primefaces.org/cdn/api/upload.php"
+                    accept="image/*"
+                    maxFileSize="1000000"
+                    (onUpload)="onUpload($event)" />
+                  <p-divider></p-divider>
+                  <p>Calificación</p>
+                  <input
+                    id="disabled-input"
+                    type="text"
+                    pInputText
+                    [disabled]="true"
+                    [(ngModel)]="homeworks[i].score" />
+
+                </p-panel>
+              </div>
+            <ng-template pTemplate="footer">
+              <div class="flex gap-3 mt-1">
+                <p-button label="Exportar" class="w-full" styleClass="w-full" />
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </p-panel>
+</ion-content>
