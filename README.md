@@ -49,3 +49,33 @@ ionic serve
 ```
 npm run compodoc:build-and-serve
 ```
+
+## Arquitectura
+
+La arquitectura para este proyecto se basa en los principios de clean architecture, 
+en este tipo de arquitectura se prioriza la organizaci&oacute;n de la l&oacute;gica
+de negocio y las reglas de dominio para tener separada la implementaci&oacute;n y la
+tecnolog&iacute;a.
+
+- src/
+  - app/
+    - core/                *(Capa central con servicios de aplicación, guards, interceptors, etc.)*
+      - constants/         *(Constantes generales de la aplicación)*
+      - guards/            *(Guards para controlar el acceso y la autorización)*
+      - interceptors/      *(Interceptores para manejo de HTTP)*
+      - models/            *(Modelos e interfaces de datos)*
+      - pipes/             *(Transforma valores en las plantillas)*
+      - services/          *(Cervicios que interactúan con las capas de dominio e infraestructura)*
+      - utils/             *(Utilidades y funciones auxiliares)*
+    - domain/              *(Capa de dominio, lógica de negocio, entidades, reglas de negocio)*
+      - entities/          *(Entidades y objetos de dominio)*
+      - use-cases/         *(Casos de uso y lógica de negocio)*
+      - interfaces/        *(Interfaces para repositorios y servicios)*
+    - presentation/        *(Capa de presentación, componentes de Angular/Ionic)*
+      - components/        *(Componentes reutilizables)*
+      - pages/             *(Páginas y vistas principales)*
+      - shared/            *(Componentes y servicios compartidos)*
+    - infrastructure/      *(Capa de infraestructura, conexión con el exterior (APIs, bases de datos, etc.))*
+      - repositories/      *(Repositorios que interactúan con la capa de dominio)*
+      - http/              *(Configuración de HTTP y otros servicios de infraestructura)*
+      - storage/           *(Servicios de almacenamiento local (como Ionic Storage))*

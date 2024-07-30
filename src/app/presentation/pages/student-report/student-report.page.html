@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="assets/easylearn-icon.png" alt="Logo de easylearn">
+      <span> Reportes </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p-panel class="card flex justify-content-center" header="Calificaciones" [toggleable]="true">
+    <p-floatLabel>
+      <p-dropdown
+          [options]="subjects"
+          [(ngModel)]="selectedSubject"
+          placeholder=" Selecciona una materia"
+          optionLabel="name"
+          [showClear]="true"
+          [checkmark]="true"
+          inputId="float-label" />
+      <label for="float-label"> Selecciona una materia</label>
+    </p-floatLabel>
+    <p-tabView>
+      <p-tabPanel header="Porcentaje de asistencia">
+        <div *ngIf="selectedGroup">
+          <p-card [header]="'Grupo ' + selectedGroup.name" subheader="" [style]="{ width: 'auto' }">
+            <ng-template pTemplate="footer">
+              <div class="flex gap-3 mt-1">
+                <p-button label="Exportar" class="w-full" styleClass="w-full" />
+              </div>
+            </ng-template>
+          </p-card>
+        </div>
+        <div class="card">
+          <p-chart type="bar" [data]="basicData" [options]="basicOptions" />
+        </div>
+        <div class="card flex justify-content-center">
+          <p>Porcentaje de asistencia</p>
+          <p-chart type="pie" [data]="data" [options]="options" />
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </p-panel>
+</ion-content>

@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <img src="assets/easylearn-icon.png" alt="Logo de easylearn">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <p-panel class="card flex justify-content-center" header="Asistencia" [toggleable]="true">
+    <p>Bienvenido profesor</p>
+    <p-tabView>
+      <p-tabPanel header="Diaria">
+        <p-floatLabel>
+          <p-dropdown
+              [options]="groups"
+              [(ngModel)]="selectedGroup"
+              placeholder="Selecciona un grupo"
+              optionLabel="name"
+              [showClear]="true"
+              [checkmark]="true"
+              inputId="float-label" />
+          <label for="float-label">Selecciona un grupo</label>
+        </p-floatLabel>
+      </p-tabPanel>
+      <p-tabPanel header="Historial">
+        <p-floatLabel>
+          <p-dropdown
+              [options]="groups"
+              [(ngModel)]="selectedGroup"
+              placeholder="Selecciona un grupo"
+              optionLabel="name"
+              [showClear]="true"
+              [checkmark]="true"
+              inputId="float-label" />
+          <label for="float-label">Selecciona un grupo</label>
+        </p-floatLabel>
+        <p-divider />
+        <p-floatLabel>
+          <p-calendar [(ngModel)]="selectedDate" inputId="birth_date" />
+          <label for="birth_date">Fecha a consultar</label>
+        </p-floatLabel>
+      </p-tabPanel>
+    </p-tabView>
+  </p-panel>
+
+  <br>
+
+  <div *ngIf="selectedGroup">
+    <p-card [header]="'Grupo ' + selectedGroup.name" subheader="Confirme la asistencia por alumno" [style]="{ width: 'auto' }">
+      <ng-template pTemplate="header">
+          <img *ngIf="!selectedDate" alt="Card" src="assets/card1.jpeg" />
+          <img *ngIf="selectedDate" alt="Card" src="assets/card2.jpeg" />
+      </ng-template>
+
+        <div *ngFor="let student of students">
+          <p-checkbox
+            value="New York"
+            inputId="ny" />
+          <label for="ny"> {{ student.first_name }} {{ student.last_name }}</label>
+          <p-divider />
+        </div>
+
+      <ng-template pTemplate="footer">
+          <div class="flex gap-3 mt-1">
+              <p-button label="Cancel" severity="secondary" class="w-full" styleClass="w-full" />
+              <p-button label="Save" class="w-full" styleClass="w-full" />
+          </div>
+      </ng-template>
+    </p-card>
+  </div>
+</ion-content>

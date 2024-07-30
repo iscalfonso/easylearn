@@ -1,0 +1,38 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <img src="assets/easylearn-icon.png" alt="Logo de easylearn">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="false" class="ion-padding">
+  <img src="assets/easylearn-logo.png" alt="Logo de easylearn">
+  <div class="flex align-items-center justify-content-center">
+    <p-card header="Acceso" subheader="Ingresa tus credenciales">
+      <form [formGroup]="loginForm" id="loginForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-column">
+          <p-iconField iconPosition="left">
+            <p-inputIcon styleClass="pi pi-user" />
+            <input id="username" formControlName="username" type="text" pInputText placeholder="Usuario">
+          </p-iconField>
+          <div *ngIf="submitted && f['username'].errors" class="flex align-items-center justify-content-end">
+            <small *ngIf="f['username'].errors['required']" id="username-help"
+              class="p-error block flex align-items-center justify-content-end">Necesita ingresar el usuario.</small>
+          </div>
+          <p-divider></p-divider>
+          <p-iconField iconPosition="left">
+            <p-inputIcon styleClass="pi pi-key" />
+            <input id="password" formControlName="password" type="password" pInputText placeholder="Contraseña">
+          </p-iconField>
+          <div *ngIf="submitted && f['password'].errors" class="flex align-items-center justify-content-end">
+            <small *ngIf="f['password'].errors['required']" id="passwword-help"
+              class="p-error block flex align-items-center justify-content-end">El password es necesario.</small>
+          </div>
+        </div>
+        <p-divider></p-divider>
+        <p-button type="submit" form="loginForm" label="Ingresar" [loading]="loading"></p-button>
+        <p-button type="button" label="Registro" [loading]="loading" [routerLink]="['/register']" routerLinkActive="router-link-active" ></p-button>
+      </form>
+    </p-card>
+  </div>
+  <p-toast></p-toast>
+</ion-content>
