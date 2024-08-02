@@ -11,27 +11,27 @@
     </ng-template>
     <form (ngSubmit)="onSubmit()" #registrationForm="ngForm">
       <div class="p-fluid p-grid">
-        <div class="p-field p-col-12">
+        <div class="form-control">
           <label for="nombre">Nombre</label>
           <input id="nombre" type="text" pInputText [(ngModel)]="nombre" name="nombre" required />
         </div>
 
-        <div class="p-field p-col-12">
+        <div class="form-control">
           <label for="apellidos">Apellidos</label>
           <input id="apellidos" type="text" pInputText [(ngModel)]="apellidos" name="apellidos" required />
         </div>
 
-        <div class="p-field p-col-12">
+        <div class="form-control">
           <label for="tipoUsuario">Tipo de Usuario</label>
           <p-dropdown [options]="tiposUsuario" [(ngModel)]="tipoUsuario" name="tipoUsuario" placeholder="Seleccione un tipo" (onChange)="onTipoUsuarioChange($event)" required></p-dropdown>
         </div>
 
-        <div class="p-field p-col-12" *ngIf="tipoUsuario === 'Alumno' || tipoUsuario === 'Padre de Familia'">
+        <div class="form-control" *ngIf="tipoUsuario === 'Alumno' || tipoUsuario === 'Padre de Familia'">
           <label for="grupo">Grupo</label>
           <input id="grupo" type="text" pInputText [(ngModel)]="grupo" name="grupo" />
         </div>
 
-        <div class="p-field p-col-12" *ngIf="tipoUsuario === 'Alumno' || tipoUsuario === 'Padre de Familia'">
+        <div class="form-control" *ngIf="tipoUsuario === 'Alumno' || tipoUsuario === 'Padre de Familia'">
           <label for="grado">Grado Escolar</label>
           <input id="grado" type="text" pInputText [(ngModel)]="grado" name="grado" />
         </div>

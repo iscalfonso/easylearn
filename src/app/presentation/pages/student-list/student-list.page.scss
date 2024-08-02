@@ -1,0 +1,47 @@
+:host ::ng-deep .shadow-container {
+    box-shadow: 1px 1px 10px black !important;
+    border-radius: 5px;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-nav li {
+    margin-top: 10px;
+
+    a {
+        color: #ffffff !important;
+    }
+}
+
+.p-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+}
+
+:host ::ng-deep .p-card-header {
+    box-shadow: 1px 1px 10px black !important;
+    border-radius: 3px;
+}
+
+:host ::ng-deep .p-card .p-card-title {
+    color: white;
+}
+
+label {
+    color: white;
+    font-weight: 400;
+}
+
+:host ::ng-deep .p-card .p-card-footer {
+    padding: 0 0 0;
+    display: flex;
+    gap: 10px;
+}
+
+:host ::ng-deep .p-button .p-button-label {
+    transition-duration: 0.2s;
+    font-weight: 500;
+}
+
+:host ::ng-deep .p-tabview .p-tabview-panels {
+    padding: 30px 10px 10px 10px;
+}

@@ -1,0 +1,19 @@
+.form-control {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0px;
+    gap: 5px;
+}
+
+:host ::ng-deep .p-button {
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+:host ::ng-deep .p-card {
+    box-shadow: 1px 1px 10px black !important;
+}
+
+:host ::ng-deep p-card .p-card-content {
+    padding: 0px 0px 10px 0px;
+}
