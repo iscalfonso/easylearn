@@ -5,98 +5,67 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  <p-panel class="card flex justify-content-center" header="Calificaciones" [toggleable]="true">
-    <p>En las siguientes tabs puede ver las evaluaciones, capturar, crear nuevas tareas y exportar datos.</p>
-    <p-floatLabel>
-      <p-dropdown
-          [options]="groups"
-          [(ngModel)]="selectedGroup"
-          placeholder=" Selecciona un grupo"
-          optionLabel="name"
-          [showClear]="true"
-          [checkmark]="true"
-          inputId="float-label" />
-      <label for="float-label"> Selecciona un grupo</label>
-    </p-floatLabel>
-    <p-divider />
-    <p-floatLabel>
-      <p-dropdown
-          [options]="subjects"
-          [(ngModel)]="selectedSubject"
-          placeholder=" Selecciona una materia"
-          optionLabel="name"
-          [showClear]="true"
-          [checkmark]="true"
-          inputId="float-label" />
-      <label for="float-label"> Selecciona una materia</label>
-    </p-floatLabel>
-    <p-tabView>
-      <p-tabPanel header="Evaluaci&oacute;n">
-        <div *ngIf="selectedGroup">
-          <p-card [header]="'Grupo ' + selectedGroup.name" subheader="Confirme la asistencia por alumno" [style]="{ width: 'auto' }">
-            <ng-template pTemplate="header">
+  <div class="shadow-container">
+    <p-panel header="Calificaciones" [toggleable]="true">
+      <p>En las siguientes tabs puede ver las evaluaciones, capturar, crear nuevas tareas y exportar datos.</p>
+        <p-floatLabel>
+          <p-dropdown [options]="groups" [(ngModel)]="selectedGroup" placeholder=" Selecciona un grupo" optionLabel="name"
+            [showClear]="true" [checkmark]="true" inputId="float-label" />
+          <label for="float-label"> Selecciona un grupo</label>
+        </p-floatLabel>
+      <p-divider />
+      <p-floatLabel>
+        <p-dropdown [options]="subjects" [(ngModel)]="selectedSubject" placeholder=" Selecciona una materia"
+          optionLabel="name" [showClear]="true" [checkmark]="true" inputId="float-label" />
+        <label for="float-label"> Selecciona una materia</label>
+      </p-floatLabel>
+      <p-tabView>
+        <p-tabPanel header="Evaluaci&oacute;n">
+          <div *ngIf="selectedGroup">
+            <p-card [header]="'Grupo ' + selectedGroup.name" subheader="Confirme la asistencia por alumno"
+              [style]="{ width: 'auto' }">
+              <ng-template pTemplate="header">
                 <img *ngIf="!selectedDate" alt="Card" src="assets/card3.jpeg" />
                 <img *ngIf="selectedDate" alt="Card" src="assets/card4.jpeg" />
-            </ng-template>
+              </ng-template>
               <div *ngFor="let student of students">
                 <p-panel [header]="student.first_name + ' ' + student.last_name" [toggleable]="true" [collapsed]="true">
                   <div *ngFor="let score of scores; let i = index">
                     <p>
-                        Tarea {{ i + 1 }} - {{ score.homeworkName }}
+                      Tarea {{ i + 1 }} - {{ score.homeworkName }}
                     </p>
-                    <p-inputNumber
-                      [(ngModel)]="scores[i].score"
-                      inputId="minmax"
-                      mode="decimal"
-                      step=".1"
-                      buttonLayout="horizontal"
-                      [showButtons]="true"
-                      spinnerMode="horizontal"
-                      decrementButtonClass="p-button-warning"
-                      incrementButtonClass="p-button-success"
-                      incrementButtonIcon="pi pi-plus"
-                      decrementButtonIcon="pi pi-minus"
-                      [min]="0"
-                      [max]="10" />
+                    <p-inputNumber [(ngModel)]="scores[i].score" inputId="minmax" mode="decimal" step=".1"
+                      buttonLayout="horizontal" [showButtons]="true" spinnerMode="horizontal"
+                      decrementButtonClass="p-button-warning" incrementButtonClass="p-button-success"
+                      incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="0" [max]="10" />
                   </div>
                 </p-panel>
               </div>
-            <ng-template pTemplate="footer">
-              <div class="flex gap-3 mt-1">
-                <p-button label="Exportar" class="w-full" styleClass="w-full" />
-              </div>
-            </ng-template>
-          </p-card>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="Nueva tarea">
-        <div class="card flex justify-content-center">
-          <p-toast />
-          <p-fileUpload
-              mode="basic"
-              chooseLabel="Seleccione el archivo de la tarea"
-              chooseIcon="pi pi-upload"
-              name="demo[]"
-              url="https://www.primefaces.org/cdn/api/upload.php"
-              accept="image/*"
-              maxFileSize="1000000"
+              <ng-template pTemplate="footer">
+                  <p-button label="Exportar" />
+              </ng-template>
+            </p-card>
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Nueva tarea">
+          <div class="card flex justify-content-center">
+            <p-toast />
+            <p-fileUpload mode="basic" chooseLabel="Seleccione el archivo de la tarea" chooseIcon="pi pi-upload"
+              name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000"
               (onUpload)="onUpload($event)" />
-        </div>
-        <p>tarea1-numeros-primos.docx</p>
-        <p-divider></p-divider>
-        <div class="flex gap-3 mt-1">
-          <p-button label="Enviar tarea" class="w-full" styleClass="w-full" />
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="Exportar">
-        <div class="flex gap-3 mt-1">
-          <p-button label="Exportar calificaciones" class="w-full" styleClass="w-full" />
-        </div>
-      </p-tabPanel>
-    </p-tabView>
-  </p-panel>
-
-  <br>
-
-
+          </div>
+          <p>tarea1-numeros-primos.docx</p>
+          <p-divider></p-divider>
+          <div class="flex gap-3 mt-1">
+            <p-button label="Enviar tarea" class="w-full" styleClass="w-full" />
+          </div>
+        </p-tabPanel>
+        <p-tabPanel header="Exportar">
+          <div class="flex gap-3 mt-1">
+            <p-button label="Exportar calificaciones" class="w-full" styleClass="w-full" />
+          </div>
+        </p-tabPanel>
+      </p-tabView>
+    </p-panel>
+  </div>
 </ion-content>
